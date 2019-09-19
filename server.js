@@ -1,5 +1,5 @@
 var express = require("express");
-var logger = require("morgan");
+// var logger = require("morgan");
 var mongoose = require("mongoose");
 
 // Our scraping tools
@@ -9,7 +9,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
-var db = require("./models");
+// var db = require("./models");
 
 var PORT = 3000;
 
@@ -19,7 +19,7 @@ var app = express();
 // Configure middleware
 
 // Use morgan logger for logging requests
-app.use(logger("dev"));
+// app.use(logger("dev"));
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -38,7 +38,7 @@ app.get("/scrape", function(req, res) {
   axios.get("https://www.apnews.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-
+    console.log($);
     // Now, we grab every h2 within an article tag, and do the following:
     $('<div data-key="related-story"').each(function(i, element) {
       // Save an empty result object
@@ -46,7 +46,7 @@ app.get("/scrape", function(req, res) {
 
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
-        .children('<div data-key="related-story-headline">');
+        .children('<div data-key="related-story-headline">')
         .text();
       result.link = $(this)
         .children("a")
