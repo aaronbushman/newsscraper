@@ -9,7 +9,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
-// var db = require("./models");
+var db = require("./models");
 
 var PORT = 3000;
 
@@ -38,13 +38,13 @@ app.get("/scrape", function(req, res) {
   axios.get("https://www.apnews.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-    console.log($);
     // Now, we grab every h2 within an article tag, and do the following:
-    $('<div data-key="related-story"').each(function(i, element) {
+    $('<div data-key="related-story">').each(function(i, element) {
       // Save an empty result object
       var result = {};
+      console.log(result);
 
-      // Add the text and href of every link, and save them as properties of the result object
+      // Add the text and href of every link, and save them as p    roperties of the result object
       result.title = $(this)
         .children('<div data-key="related-story-headline">')
         .text();
@@ -102,7 +102,7 @@ app.get("/articles/:id", function(req, res) {
 // Route for saving/updating an Article's associated Note
 app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
-  db.Note.create(req.body)
+  db.Comment.create(req.body)
     .then(function(dbNote) {
       // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
