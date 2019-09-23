@@ -9,16 +9,21 @@ var ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    unique: {index: {unique: true}}
+
   },
   // `link` is required and of type String
   link: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    unique: {index: {unique: true}}
   },
-  // img: {
-  //   type: String,
-  // },
+  image: {
+    type: Buffer,
+  },
   summary: {
     type: String,
   },

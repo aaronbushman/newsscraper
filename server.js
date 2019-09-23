@@ -45,7 +45,6 @@ app.get("/scrape", function (req, res) {
     $('.story_item').each(function (i, element) {
       // Save an empty result object
       var result = {};
-      console.log(result)
       // Add the text and href of every link, and save them as p    roperties of the result object
       result.title = $(this)
         .children('.content')
@@ -54,11 +53,11 @@ app.get("/scrape", function (req, res) {
         .children("a")
         .attr("href");
       result.summary = $(this)
-        .children(".content", ".story-summary", "p")
+        .find("p")
         .text();
-      // result.img = $(this)
-      //   .children("img")
-      //   .attr("src");
+      result.image = $(this)
+        .find("img")
+        .attr("src");
 
       console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~")
       console.log(result);
@@ -75,7 +74,8 @@ app.get("/scrape", function (req, res) {
           // If an error occurred, log it
           console.log(err);
         });
-    });
+    });  
+    
 
     // Send a message to the client
     res.send("Scrape Complete");
