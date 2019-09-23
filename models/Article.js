@@ -22,7 +22,7 @@ var ArticleSchema = new Schema({
     unique: {index: {unique: true}}
   },
   image: {
-    type: Buffer,
+    type: String,
   },
   summary: {
     type: String,
@@ -31,9 +31,9 @@ var ArticleSchema = new Schema({
   // `note` is an object that stores a Note id
   // The ref property links the ObjectId to the Note model
   // This allows us to populate the Article with an associated Note
-  note: {
+  comment: {
     type: Schema.Types.ObjectId,
-    ref: "Note"
+    ref: "Comment"
   }
 });
 
