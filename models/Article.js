@@ -21,9 +21,9 @@ var ArticleSchema = new Schema({
     trim: true,
     unique: {index: {unique: true}}
   },
-  image: {
-    type: String,
-  },
+  // image: {
+  //   type: String,
+  // },
   summary: {
     type: String,
   },

@@ -30,9 +30,9 @@ app.use(express.static("public"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user1:password1@ds121980.mlab.com:21980/heroku_m17n6jcq";
 
 mongoose.connect(MONGODB_URI)
-console.log("_-_-_-_-_-_-_-_-");
-console.log(MONGODB_URI);
-console.log("_-_-_-_-_-_-_-_-");
+// console.log("_-_-_-_-_-_-_-_-");
+// console.log(MONGODB_URI);
+// console.log("_-_-_-_-_-_-_-_-");
 // Routes
 
 // A GET route for scraping the apNews website
@@ -55,9 +55,10 @@ app.get("/scrape", function (req, res) {
       result.summary = $(this)
         .find("p")
         .text();
-      result.image = $(this)
-        .find("img")
-        .attr("src");
+      // result.image = $(this)
+      //   .find("img")
+      //   .attr("src");
+
 
       console.log("~~~~~~~~~~~~s~~~~~~~~~~~~~~")
       console.log(result);
