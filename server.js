@@ -27,8 +27,8 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user1:password1@ds121980.mlab.com:21980/heroku_m17n6jcq";
-
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://ds121980.mlab.com:21980/heroku_m17n6jcq";
+// "mongodb://user1:password1@ds121980.mlab.com:21980/heroku_m17n6jcq"
 mongoose.connect(MONGODB_URI)
 // console.log("_-_-_-_-_-_-_-_-");
 // console.log(MONGODB_URI);
